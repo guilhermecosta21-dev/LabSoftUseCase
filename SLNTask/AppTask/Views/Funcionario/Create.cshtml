@@ -4,35 +4,32 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Criar Funcionário</h1>
 
 <h4>Funcionario</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
+        <form action="/Funcionario/Create" method="post">
+            @Html.AntiForgeryToken()
+            <div class="form-group mb-3">
+                <label for="Nome" class="control-label">Nome</label>
+                <input type="text" name="Nome" id="Nome" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="Cargo" class="control-label"></label>
-                <input asp-for="Cargo" class="form-control" />
-                <span asp-validation-for="Cargo" class="text-danger"></span>
+            <div class="form-group mb-3">
+                <label for="Cargo" class="control-label">Cargo</label>
+                <input type="text" name="Cargo" id="Cargo" class="form-control" />
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group mb-3">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+                <a href="/Funcionario/Index" class="btn btn-secondary">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
